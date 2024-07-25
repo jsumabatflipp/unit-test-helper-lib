@@ -1,6 +1,6 @@
 module github.com/jsumabatflipp/unit-test-helper-lib
 
-go 1.22.0
+go 1.21
 
 require (
 	github.com/google/uuid v1.6.0
