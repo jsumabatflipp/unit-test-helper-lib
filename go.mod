@@ -1,4 +1,4 @@
-module github.com/wishabi/unit-test-helper-lib
+module github.com/jsumabatflipp/unit-test-helper-lib
 
 go 1.22.0
 
