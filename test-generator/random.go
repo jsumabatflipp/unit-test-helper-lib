@@ -12,6 +12,20 @@ func init() {
 
 func RandomString(length int) string {
 	const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+	return randomStringWithCharset(length, charset)
+}
+
+func RandomLowercaseString(length int) string {
+	const charset = "abcdefghijklmnopqrstuvwxyz"
+	return randomStringWithCharset(length, charset)
+}
+
+func RandomUppercaseString(length int) string {
+	const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	return randomStringWithCharset(length, charset)
+}
+
+func randomStringWithCharset(length int, charset string) string {
 	b := make([]byte, length)
 	for i := range b {
 		b[i] = charset[rand.Intn(len(charset))]
