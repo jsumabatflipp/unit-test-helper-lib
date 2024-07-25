@@ -58,3 +58,28 @@ func PopulateStruct(s interface{}) {
 		}
 	}
 }
+
+func ConstructExpected[T any, R any](args T, modifyFunc func(*R)) R {
+	var expected R
+	populateFromArgs(&expected, args)
+	if modifyFunc != nil {
+		modifyFunc(&expected)
+	}
+	return expected
+}
+
+func populateFromArgs[R any, T any](expected *R, args T) {
+	eVal := reflect.ValueOf(expected).Elem()
+	aVal := reflect.ValueOf(args)
+
+	for i := 0; i < eVal.NumField(); i++ {
+		fieldName := eVal.Type().Field(i).Name
+		aField := aVal.FieldByName(fieldName)
+		if aField.IsValid() {
+			eField := eVal.FieldByName(fieldName)
+			if eField.CanSet() {
+				eField.Set(aField)
+			}
+		}
+	}
+}
