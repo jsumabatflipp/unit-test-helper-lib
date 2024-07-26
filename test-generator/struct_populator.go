@@ -1,6 +1,7 @@
 package test_generator
 
 import (
+	"github.com/google/uuid"
 	"math/rand"
 	"reflect"
 )
@@ -18,11 +19,31 @@ func randomValue(t reflect.Type) reflect.Value {
 
 	switch t.Kind() {
 	case reflect.String:
-		return reflect.ValueOf(RandomString(10))
-	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
-		return reflect.ValueOf(RandomInt(1, 100))
-	case reflect.Float32, reflect.Float64:
-		return reflect.ValueOf(RandomFloat64(1.0, 100.0))
+		return reflect.ValueOf(uuid.NewString())
+	case reflect.Int:
+		return reflect.ValueOf(int(rand.Intn(100)))
+	case reflect.Int8:
+		return reflect.ValueOf(int8(rand.Intn(100)))
+	case reflect.Int16:
+		return reflect.ValueOf(int16(rand.Intn(100)))
+	case reflect.Int32:
+		return reflect.ValueOf(int32(rand.Intn(100)))
+	case reflect.Int64:
+		return reflect.ValueOf(rand.Int63())
+	case reflect.Uint:
+		return reflect.ValueOf(uint(rand.Intn(100)))
+	case reflect.Uint8:
+		return reflect.ValueOf(uint8(rand.Intn(100)))
+	case reflect.Uint16:
+		return reflect.ValueOf(uint16(rand.Intn(100)))
+	case reflect.Uint32:
+		return reflect.ValueOf(uint32(rand.Intn(100)))
+	case reflect.Uint64:
+		return reflect.ValueOf(rand.Uint64())
+	case reflect.Float32:
+		return reflect.ValueOf(rand.Float32())
+	case reflect.Float64:
+		return reflect.ValueOf(rand.Float64())
 	case reflect.Bool:
 		return reflect.ValueOf(rand.Intn(2) == 1)
 	case reflect.Struct:
